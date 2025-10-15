@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8" />
+		<!-- Establece la codificación de caracteres a UTF-8 -->
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!-- Asegura que la página sea responsiva en dispositivos móviles -->
+		<title>VMusic - Iniciar sesión</title>
+		<link rel="stylesheet" href="style.css">
+		<style>
+			.error-message {
+				color: #cc3333;
+				font-size: 0.8rem;
+				margin-top: 0;
+				margin-bottom: 8px;
+				margin-left: 9px;
+			}
+
+			input.error {
+				border: 1px solid #cc3333;
+				background-color: rgba(204, 51, 51, 0.1);
+				margin-bottom: 0;
+			}
+		</style>
+	</head>
+
+	<!-- Cuerpo de la página de inicio de sesión -->
+	<body>
+		<!-- Contenedor principal de la página de inicio de sesión -->
+		<div class="login-wrap">
+			<!-- Tarjeta de inicio de sesión -->
+			<div>
+					<!-- Título de la página -->
+					<div class="page-title-above">VMusic</div>
+					
+					<section class="login-card" aria-labelledby="login-title">
+						<!-- Título de la sección de inicio de sesión -->
+						<h2 id="login-title">Iniciar sesión</h2>
+
+						<div class="decorative-frame">
+						<!-- Formulario de inicio de sesión -->
+						<form class="login-form" action="#" method="post">
+							<!-- Campo de correo electrónico -->
+							<div class="login-field">
+								<label for="email">Correo electrónico</label>
+								<input id="email" name="email" type="email" placeholder="tucorreo@ejemplo.com" class="error" required>
+							</div>
+							<!-- Campo de contraseña -->
+							<div class="login-field">
+								<label for="password">Contraseña</label>
+								<input id="password" name="password" type="password" placeholder="********" class="error" required>
+								<div class="error-message">El correo electrónico y/o la contraseña son incorrectos</div>
+							</div>
+							<!-- Botón de envío del formulario -->
+							<div class="login-actions">
+								<button class="btn btn-login" type="submit">Iniciar sesión</button>
+							</div>
+							<!-- Enlace para registrarse si no se tiene una cuenta -->
+							<div style="text-align:center; margin-top:0.6rem;">
+								<p style="font-size:0.9rem; color:#cfe9fb;">¿No tienes cuenta? <a href="reigstro.html" style="color:var(--neon-cyan); text-decoration:underline;">Regístrate</a></p>
+							</div>
+						</form>
+					</div>
+				</section>
+			</div>
+		</div>
+	</body>
+</html>

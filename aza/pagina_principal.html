@@ -31,9 +31,9 @@
       <img src="images/user_icon.png" alt="Foto de perfil" class="profile-pic" />
       <ul>
         <li><a href="perfil_usuario.html">Perfil</a></li>
-        <li><a href="pagina_principal.html">Página principal</a></li>
-        <li><a href="inicio_vmusic.html">Cerrar sesión</a></li>        
+        <li><a href="pagina_principal.html">Inicio</a></li>
         <li><a href="ajustes_perfil.html">Ajustes</a></li>
+        <li><a href="inicio_vmusic.html">Cerrar sesión</a></li>
       </ul>
     </nav>
       
@@ -98,25 +98,6 @@
       </div>
     </div>
   </footer>
-  <script>
-    
-    function toggleMenu() {
-      const menu = document.getElementById('dropdownMenu');
-      menu.classList.toggle('hidden');
-    }
-
-    // Cierra el menú si se hace clic fuera de él
-    document.addEventListener('click', function(event) {
-      const menu = document.getElementById('dropdownMenu');
-      const button = document.querySelector('.icon-btn.menu');
-
-      if (!menu.contains(event.target) && !button.contains(event.target)) {
-        menu.classList.add('hidden');
-      }
-    });
-
-
-    </script>
-
+  <script src="menu_desplegable.js"></script>
 </body>
 </html>

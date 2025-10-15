@@ -63,6 +63,18 @@
       background-color: #e53935;
       margin-top: 10px;
     }
+    .error-message {
+        color: #cc3333;  /* Rojo más oscuro y menos saturado */
+        font-size: 0.8rem;
+        margin-top: 4px;
+        margin-bottom: 8px;
+        margin-left: 9px;
+    }
+
+    input.error {
+        border: 1px solid #cc3333;  /* Actualizado para coincidir con el nuevo color */
+        background-color: rgba(204, 51, 51, 0.1);  /* Fondo actualizado para coincidir */
+    }
   </style>
 </head>
 <body>
@@ -78,7 +90,8 @@
     <h2>Editar perfil</h2>
     <form action="#" method="post">
       <label for="username">Nombre de usuario</label>
-      <input type="text" id="username" name="username" placeholder="Nombre de usuario">
+      <input type="text" id="username" name="username" placeholder="Nombre de usuario" class="error">
+      <div class="error-message">Nombre de usuario no disponible</div>
 
       <label for="firstname">Nombre</label>
       <input type="text" id="firstname" name="firstname" placeholder="Nombre">
@@ -87,19 +100,23 @@
       <input type="text" id="lastname" name="lastname" placeholder="Apellidos">
 
       <label for="email">Correo electrónico</label>
-      <input type="email" id="email" name="email" placeholder="Correo electrónico">
+      <input type="email" id="email" name="email" placeholder="Correo electrónico" class="error">
+      <div class="error-message">Correo electrónico no disponible</div>
 
       <label for="old-password">Antigua contraseña</label>
-      <input type="password" id="old-password" name="old-password" placeholder="Contraseña actual">
+      <input type="password" id="old-password" name="old-password" placeholder="Contraseña actual" class="error">
+      <div class="error-message">Contraseña incorrecta</div>
 
       <label for="new-password">Nueva contraseña</label>
       <input type="password" id="new-password" name="new-password" placeholder="Nueva contraseña">
 
       <label for="confirm-password">Confirmar nueva contraseña</label>
-      <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirmar nueva contraseña">
+      <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirmar nueva contraseña" class="error">
+      <div class="error-message">Las contraseñas no coinciden</div>
 
       <label for="birthdate">Fecha de nacimiento</label>
-      <input type="date" id="birthdate" name="birthdate">
+      <input type="date" id="birthdate" name="birthdate" class="error">
+      <div class="error-message">Debes ser mayor de edad para acceder a VMusic</div>
 
       <button type="submit" class="btn">Guardar cambios</button>
     </form>
