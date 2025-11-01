@@ -1,5 +1,5 @@
 <?php
-require_once 'Database.php';
+require_once __DIR__ . '/../Database.php';
 require_once 'UsuarioDAO.php';
 
 class UsuarioDAOImpl implements UsuarioDAO {
@@ -117,7 +117,7 @@ class UsuarioDAOImpl implements UsuarioDAO {
         }
     }
 
-    
+
     public function obtenerUsuarioPorCorreo($correo) {
         $sql = "SELECT * FROM Usuario WHERE correo = ?";
         

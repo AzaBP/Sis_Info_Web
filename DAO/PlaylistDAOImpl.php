@@ -1,5 +1,5 @@
 <?php
-require_once 'Database.php';
+require_once __DIR__ . '/../Database.php';
 require_once 'PlaylistDAO.php';
 
 class PlaylistDAOImpl implements PlaylistDAO {
@@ -9,7 +9,7 @@ class PlaylistDAOImpl implements PlaylistDAO {
         $this->conn = $conn;
     }
 
-    
+
     public function agregarPlaylist(PlaylistVO $playlist) {
         $sql = "INSERT INTO Playlist (lista_id, nombre_cancion, nombre_creador) VALUES (?, ?, ?)";
         

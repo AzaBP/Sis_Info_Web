@@ -1,5 +1,5 @@
 <?php
-require_once 'Database.php';
+require_once __DIR__ . '/../Database.php';
 require_once 'SuscripcionDAO.php';
 
 class SuscripcionDAOImpl implements SuscripcionDAO {
@@ -9,7 +9,7 @@ class SuscripcionDAOImpl implements SuscripcionDAO {
         $this->conn = $conn;
     }
 
-    
+
     public function agregarSuscripcion(SuscripcionVO $suscripcion) {
         $sql = "INSERT INTO Suscripcion (codigo_suscripcion, tipo, precio) VALUES (?, ?, ?)";
         

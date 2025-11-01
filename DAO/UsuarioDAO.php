@@ -1,5 +1,5 @@
 <?php
-require_once 'UsuarioVO.php';
+require_once __DIR__ . '/../VO php/UsuarioVO.php';
 
 interface UsuarioDAO {
     public function agregarUsuario(UsuarioVO $usuario);

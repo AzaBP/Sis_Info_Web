@@ -1,5 +1,5 @@
 <?php
-require_once 'CreadorVO.php';
+require_once __DIR__ . '/../VO php/CreadorVO.php';
 
 interface CreadorDAO {
     public function agregarCreador(CreadorVO $creador);

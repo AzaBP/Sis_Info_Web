@@ -1,5 +1,5 @@
 <?php
-require_once 'ListaVO.php';
+require_once __DIR__ . '/../VO php/ListaVO.php';
 
 interface ListaDAO {
     public function agregarLista(ListaVO $lista);

@@ -1,5 +1,5 @@
 <?php
-require_once 'OyenteVO.php';
+require_once __DIR__ . '/../VO php/OyenteVO.php';
 
 interface OyenteDAO {
     public function agregarOyente(OyenteVO $oyente);

@@ -1,5 +1,5 @@
 <?php
-require_once 'PlaylistVO.php';
+require_once __DIR__ . '/../VO php/PlaylistVO.php';
 
 interface PlaylistDAO {
     public function agregarPlaylist(PlaylistVO $playlist);

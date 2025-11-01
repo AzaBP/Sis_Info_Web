@@ -1,5 +1,5 @@
 <?php
-require_once 'CancionVO.php';
+require_once __DIR__ . '/../VO php/CancionVO.php';
 
 interface CancionDAO {
     public function agregarCancion(CancionVO $cancion);

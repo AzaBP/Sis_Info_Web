@@ -1,5 +1,5 @@
 <?php
-require_once 'SuscripcionVO.php';
+require_once __DIR__ . '/../VO php/SuscripcionVO.php';
 
 interface SuscripcionDAO {
     public function agregarSuscripcion(SuscripcionVO $suscripcion);

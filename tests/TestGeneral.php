@@ -1,32 +1,32 @@
 <?php
 
 // Configuración
-require_once 'Database.php';
+require_once __DIR__ '/../Database.php';
 
 // VOs
-require_once 'model/UsuarioVO.php';
-require_once 'model/CreadorVO.php';
-require_once 'model/OyenteVO.php';
-require_once 'model/CancionVO.php';
-require_once 'model/SuscripcionVO.php';
-require_once 'model/ListaVO.php';
-require_once 'model/PlaylistVO.php';
+require_once __DIR__ . '/../VO php/UsuarioVO.php';
+require_once __DIR__ . '/../VO php/CreadorVO.php';
+require_once __DIR__ . '/../VO php/OyenteVO.php';
+require_once __DIR__ . '/../VO php/CancionVO.php';
+require_once __DIR__ . '/../VO php/SuscripcionVO.php';
+require_once __DIR__ . '/../VO php/ListaVO.php';
+require_once __DIR__ . '/../VO php/PlaylistVO.php';
 
 // DAOs
-require_once 'dao/UsuarioDAO.php';
-require_once 'dao/UsuarioDAOImpl.php';
-require_once 'dao/CreadorDAO.php';
-require_once 'dao/CreadorDAOImpl.php';
-require_once 'dao/OyenteDAO.php';
-require_once 'dao/OyenteDAOImpl.php';
-require_once 'dao/CancionDAO.php';
-require_once 'dao/CancionDAOImpl.php';
-require_once 'dao/SuscripcionDAO.php';
-require_once 'dao/SuscripcionDAOImpl.php';
-require_once 'dao/ListaDAO.php';
-require_once 'dao/ListaDAOImpl.php';
-require_once 'dao/PlaylistDAO.php';
-require_once 'dao/PlaylistDAOImpl.php';
+require_once __DIR__ . '/../DAO/UsuarioDAO.php';
+require_once __DIR__ . '/../DAO/UsuarioDAOImpl.php';
+require_once __DIR__ . '/../DAO/CreadorDAO.php';
+require_once __DIR__ . '/../DAO/CreadorDAOImpl.php';
+require_once __DIR__ . '/../DAO/OyenteDAO.php';
+require_once __DIR__ . '/../DAO/OyenteDAOImpl.php';
+require_once __DIR__ . '/../DAO/CancionDAO.php';
+require_once __DIR__ . '/../DAO/CancionDAOImpl.php';
+require_once __DIR__ . '/../DAO/SuscripcionDAO.php';
+require_once __DIR__ . '/../DAO/SuscripcionDAOImpl.php';
+require_once __DIR__ . '/../DAO/ListaDAO.php';
+require_once __DIR__ . '/../DAO/ListaDAOImpl.php';
+require_once __DIR__ . '/../DAO/PlaylistDAO.php';
+require_once __DIR__ . '/../DAO/PlaylistDAOImpl.php';
 
 // CREAR CONEXIÓN
 echo "<h2> PRUEBA COMPLETA SISTEMA VMUSIC </h2>";

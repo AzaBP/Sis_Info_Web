@@ -1,5 +1,5 @@
 <?php
-require_once 'Database.php';
+require_once __DIR__ . '/../Database.php';
 require_once 'CancionDAO.php';
 
 class CancionDAOImpl implements CancionDAO {
@@ -86,7 +86,7 @@ class CancionDAOImpl implements CancionDAO {
         }
     }
 
-    
+
     public function eliminarCancion($nombre, $nombre_creador) {
         $sql = "DELETE FROM Cancion WHERE nombre = ? AND nombre_creador = ?";
         

@@ -1,5 +1,5 @@
 <?php
-require_once 'Database.php';
+require_once __DIR__ . '/../Database.php';
 require_once 'ListaDAO.php';
 
 class ListaDAOImpl implements ListaDAO {
@@ -9,7 +9,7 @@ class ListaDAOImpl implements ListaDAO {
         $this->conn = $conn;
     }
 
-    
+
     public function agregarLista(ListaVO $lista) {
         $sql = "INSERT INTO Lista (lista_id) VALUES (?)";
         
