@@ -1,7 +1,7 @@
 <?php
 
 // Configuración
-require_once __DIR__ '/../Database.php';
+require_once __DIR__ . '/../Database.php';
 
 // VOs
 require_once __DIR__ . '/../VO php/UsuarioVO.php';
