@@ -12,7 +12,7 @@ class Database {
         try {
             // Crear nueva conexion PDO
             $this->conn = new PDO(
-                "mysql:host=" . $this->host . ";dbname=" . $this->db_name,
+                "mysql:host=" . $this->host . ";port=3307;dbname=" . $this->db_name,    // Puerto por defecto 3306
                 $this->username,
                 $this->password
             );
