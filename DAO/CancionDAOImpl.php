@@ -53,7 +53,7 @@ class CancionDAOImpl implements CancionDAO {
         $canciones = [];
         try {
             $stmt = $this->conn->prepare($sql);
-            $stmt->bindValue(1, $nombreCreador);
+            $stmt->bindValue(1, $nombre_creador);
             $stmt->execute();
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $canciones[] = new CancionVO(
