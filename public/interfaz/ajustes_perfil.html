@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar perfil de usuario</title>
+  <link rel="stylesheet" href="/../css/style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      padding: 16px;
+    }
+    .back-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    .back-btn svg {
+      stroke: white;
+    }
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-top: 12px;
+      margin-bottom: 4px;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      border-radius: 4px;
+      border: none;
+      background-color: #1e1e1e;
+      color: white;
+    }
+    .btn {
+      margin-top: 20px;
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      background-color: #00bcd4;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .btn-danger {
+      background-color: #e53935;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <button class="back-btn" onclick="location.href='pagina_principal.html'" aria-label="Volver">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M15 18L9 12L15 6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </button>
+  </header>
+
+  <div class="container">
+    <h2>Editar perfil</h2>
+    <form action="#" method="post">
+      <label for="username">Nombre de usuario</label>
+      <input type="text" id="username" name="username" placeholder="Nombre de usuario">
+
+      <label for="firstname">Nombre</label>
+      <input type="text" id="firstname" name="firstname" placeholder="Nombre">
+
+      <label for="lastname">Apellidos</label>
+      <input type="text" id="lastname" name="lastname" placeholder="Apellidos">
+
+      <label for="email">Correo electrónico</label>
+      <input type="email" id="email" name="email" placeholder="Correo electrónico">
+
+      <label for="old-password">Antigua contraseña</label>
+      <input type="password" id="old-password" name="old-password" placeholder="Contraseña actual">
+
+      <label for="new-password">Nueva contraseña</label>
+      <input type="password" id="new-password" name="new-password" placeholder="Nueva contraseña">
+
+      <label for="confirm-password">Confirmar nueva contraseña</label>
+      <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirmar nueva contraseña">
+
+      <label for="birthdate">Fecha de nacimiento</label>
+      <input type="date" id="birthdate" name="birthdate">
+
+      <button type="submit" class="btn">Guardar cambios</button>
+    </form>
+
+    <form action="#" method="post">
+      <button type="submit" class="btn btn-danger">Eliminar cuenta</button>
+    </form>
+  </div>
+</body>
+</html>

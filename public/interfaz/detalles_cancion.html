@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalle de Canción</title>
+  <link rel="stylesheet" href="/../css/style.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: white;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px;
+    }
+    .icon-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    .icon-btn svg {
+      stroke: white;
+    }
+    .dropdown-menu {
+      position: absolute;
+      top: 60px;
+      right: 16px;
+      background-color: #1e1e1e;
+      border: 1px solid #333;
+      padding: 10px;
+      border-radius: 8px;
+    }
+    .dropdown-menu.hidden {
+      display: none;
+    }
+    .dropdown-menu a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      margin: 8px 0;
+    }
+    .song-info {
+      text-align: center;
+      padding: 20px;
+    }
+    .song-info img {
+      width: 200px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+    .song-info h2 {
+      margin-top: 16px;
+      font-size: 24px;
+    }
+    .song-info p {
+      margin: 4px 0;
+      color: #ccc;
+    }
+    .section {
+      margin: 30px 20px;
+    }
+    .section h3 {
+      margin-bottom: 12px;
+      font-size: 20px;
+    }
+    .card-row {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+    }
+    .card {
+      min-width: 100px;
+      text-align: center;
+    }
+    .card img {
+      width: 100px;
+      height: 100px;
+      border-radius: 8px;
+    }
+    .card p {
+      margin-top: 6px;
+      font-size: 14px;
+      color: #ccc;
+    }
+    .comments {
+      margin: 20px;
+    }
+    .comment {
+      background-color: #1e1e1e;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+    }
+    .comment h4 {
+      margin: 0 0 6px;
+    }
+    .comment p {
+      margin: 0;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <button class="icon-btn" onclick="location.href='pagina_principal.html'" aria-label="Volver">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M15 18L9 12L15 6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </button>
+    <button class="icon-btn" onclick="toggleMenu()" aria-label="Menú">
+      <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect y="1" width="20" height="2.6" rx="1" fill="white" />
+        <rect y="6" width="20" height="2.6" rx="1" fill="white" />
+        <rect y="11" width="20" height="2.6" rx="1" fill="white" />
+      </svg>
+    </button>
+    <nav id="dropdownMenu" class="dropdown-menu hidden">
+      <img src="images/user_icon.png" alt="Foto de perfil" class="profile-pic" />
+      <ul>
+        <li><a href="perfil_usuario.html">Perfil</a></li>
+        <li><a href="pagina_principal.html">Inicio</a></li>
+        <li><a href="ajustes_perfil.html">Ajustes</a></li>
+        <li><a href="inicio_vmusic.html">Cerrar sesión</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="song-info">
+    <img src="images/caratula.png" alt="Carátula de la canción">
+    <h2>Nombre de la Canción</h2>
+    <p>Artista: Nombre del Artista</p>
+    <p>Género: Pop</p>
+    <p>Duración: 3:45</p>
+    <p>Valoración: ★★★★☆</p>
+  </section>
+
+  <section class="section">
+    <h3>Canciones similares</h3>
+    <div class="card-row">
+      <div class="card">
+        <img src="images/similar1.png" alt="Similar 1">
+        <p>Canción 1</p>
+      </div>
+      <div class="card">
+        <img src="images/similar2.png" alt="Similar 2">
+        <p>Canción 2</p>
+      </div>
+      <div class="card">
+        <img src="images/similar3.png" alt="Similar 3">
+        <p>Canción 3</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section comments">
+    <h3>Comentarios</h3>
+    <div class="comment">
+      <h4>Usuario1 ★★★★☆</h4>
+      <p>Me encanta esta canción, tiene muy buen ritmo.</p>
+    </div>
+    <div class="comment">
+      <h4>Usuario2 ★★★☆☆</h4>
+      <p>Está bien, pero prefiero otras del mismo artista.</p>
+    </div>
+    <div class="comment">
+      <h4>Usuario3 ★★★★★</h4>
+      <p>¡Una obra maestra!</p>
+    </div>
+  </section>
+
+  <script src="menu_desplegable.js"></script>
+</body>
+</html>

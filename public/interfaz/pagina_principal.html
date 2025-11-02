@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VMusic - Principal</title>
+  <link rel="stylesheet" href="/../css/style.css">
+</head>
+<body>
+  <header class="app-header">
+    <nav class="nav-left">
+      <a href="#" class="nav-item active">Home</a>
+      <a href="#" class="nav-item">Your Library</a>
+    </nav>
+    <input class="search" placeholder="Buscar" aria-label="Buscar" />
+    <div class="header-actions">
+      <!-- botón de menú -->
+      <div class="header-right">
+        <button class="icon-btn menu" aria-label="Menú" onclick="toggleMenu()">
+          <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect y="1" width="20" height="2.6" rx="1" fill="white" />
+            <rect y="6" width="20" height="2.6" rx="1" fill="white" />
+            <rect y="11" width="20" height="2.6" rx="1" fill="white" />
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Menú desplegable fuera del botón -->
+    <nav id="dropdownMenu" class="dropdown-menu hidden">
+      <img src="images/user_icon.png" alt="Foto de perfil" class="profile-pic" />
+      <ul>
+        <li><a href="perfil_usuario.html">Perfil</a></li>
+        <li><a href="pagina_principal.html">Inicio</a></li>
+        <li><a href="ajustes_perfil.html">Ajustes</a></li>
+        <li><a href="inicio_vmusic.html">Cerrar sesión</a></li>
+      </ul>
+    </nav>
+      
+    </div>
+  </header>
+
+
+  <main class="main-wrap">
+    <section class="hero-section">
+      <h1 class="page-title">Recommended for you</h1>
+
+      <h3 class="section-title">Playlists</h3>
+      <div class="playlists-row">
+        <a href="playlist.html" title="Ver Chill Mix" style="text-decoration: none; color: inherit;">
+          <article class="pl-card">
+            <div class="pl-art">♪</div>
+            <div class="pl-caption">Chill Mix</div>
+          </article>
+        </a>
+
+        <article class="pl-card">
+          <div class="pl-art">♪</div>
+          <div class="pl-caption">Workout</div>
+        </article>
+
+        <article class="pl-card">
+          <div class="pl-art">♪</div>
+          <div class="pl-caption">Relaxing</div>
+        </article>
+
+        <article class="pl-card">
+          <div class="pl-art">♪</div>
+          <div class="pl-caption">Party</div>
+        </article>
+      </div>
+
+      <h3 class="section-title">Recommended Albums</h3>
+      <div class="albums-grid">
+        <div class="album-card"><div class="album-cover" style="background:linear-gradient(135deg,#ff9a3c,#ff5e5e)"></div><div class="album-title">Acoustic Breeze</div></div>
+        <div class="album-card"><div class="album-cover" style="background:linear-gradient(135deg,#9b5cff,#6a5bff)"></div><div class="album-title">Evening Sky</div></div>
+        <div class="album-card"><div class="album-cover" style="background:linear-gradient(135deg,#2b1a4b,#1a1a4b)"></div><div class="album-title">Midnight Vibes</div></div>
+        <div class="album-card"><div class="album-cover" style="background:linear-gradient(135deg,#ff6b6b,#ff9a3c)"></div><div class="album-title">Smooth Jazz</div></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="mini-player">
+    <div class="player-inner">
+      <div class="player-controls-left">
+        <div class="track-info">
+          <div class="track-title">Now playing</div>
+          <div class="track-sub">Artist • Album</div>
+        </div>
+      </div>
+      <div class="player-controls-center">
+        <button class="btn-ctrl">◀◀</button>
+        <button class="btn-ctrl play">▶</button>
+        <button class="btn-ctrl">▶▶</button>
+      </div>
+      <div class="player-controls-right">
+        <div class="time">0:00</div>
+      </div>
+    </div>
+  </footer>
+  <script src="menu_desplegable.js"></script>
+</body>
+</html>
