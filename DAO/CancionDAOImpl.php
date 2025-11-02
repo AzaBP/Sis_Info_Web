@@ -48,6 +48,27 @@ class CancionDAOImpl implements CancionDAO {
         }
     }
 
+    public function obtenerCancionesPorCreador($nombre_creador) {
+        $sql = "SELECT * FROM Cancion WHERE nombre_creador = ?";
+        $canciones = [];
+        try {
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindValue(1, $nombreCreador);
+            $stmt->execute();
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $canciones[] = new CancionVO(
+                    $row['nombre'],
+                    $row['nombre_creador'],
+                    $row['duracion'],
+                    $row['valoracion']
+                );
+            }
+            return $canciones;
+        } catch (PDOException $e) {
+            error_log("Error obteniendo canciones por creador: " . $e->getMessage());
+            return [];
+        }
+    }
 
     public function obtenerTodasLasCanciones() {
         $sql = "SELECT * FROM Cancion";
