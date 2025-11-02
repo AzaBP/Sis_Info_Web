@@ -33,6 +33,6 @@ class UsuarioVO {
     public function setPassword($password) { $this->password = $password; }
     public function setTelefono($telefono) { $this->telefono = $telefono; }
     public function setCodigoSuscripcion($codigo_suscripcion) { $this->codigo_suscripcion = $codigo_suscripcion; }
-
 }
+
 ?>
