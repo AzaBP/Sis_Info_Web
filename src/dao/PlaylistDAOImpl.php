@@ -4,9 +4,11 @@ require_once 'PlaylistDAO.php';
 
 class PlaylistDAOImpl implements PlaylistDAO {
     private $conn;
+    private PDO $db;
 
     public function __construct($conn) {
         $this->conn = $conn;
+        $this->db = Database::getConnection();
     }
 
 
@@ -141,5 +143,31 @@ class PlaylistDAOImpl implements PlaylistDAO {
             return false;
         }
     }
+
+    
+    public function agregarCancion(string $listaId, string $nombreCancion, string $nombreCreador): bool {
+        $sql = "INSERT INTO Playlist (lista_id, nombre_cancion, nombre_creador) VALUES (?,?,?)";
+        $st = $this->db->prepare($sql);
+        $st->bindValue(1, $listaId);
+        $st->bindValue(2, $nombreCancion);
+        $st->bindValue(3, $nombreCreador);
+        return $st->execute();
+    }
+
+    public function eliminarCancion(string $listaId, string $nombreCancion, string $nombreCreador): bool {
+        $st = $this->db->prepare("DELETE FROM Playlist WHERE lista_id=? AND nombre_cancion=? AND nombre_creador=?");
+        $st->bindValue(1, $listaId);
+        $st->bindValue(2, $nombreCancion);
+        $st->bindValue(3, $nombreCreador);
+        return $st->execute();
+    }
+
+    public function obtenerCanciones(string $listaId): array {
+        $st = $this->db->prepare("SELECT nombre_cancion, nombre_creador FROM Playlist WHERE lista_id=? ORDER BY nombre_cancion");
+        $st->bindValue(1, $listaId);
+        $st->execute();
+        return $st->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 }
 ?>

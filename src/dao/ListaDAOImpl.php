@@ -4,9 +4,11 @@ require_once 'ListaDAO.php';
 
 class ListaDAOImpl implements ListaDAO {
     private $conn;
+    private PDO $db;
 
     public function __construct($conn) {
         $this->conn = $conn;
+        $this->db = Database::getConnection();
     }
 
 
@@ -94,5 +96,21 @@ class ListaDAOImpl implements ListaDAO {
             return false;
         }
     }
+
+    
+    public function crearLista(string $listaId, string $usuarioId): bool {
+        $st = $this->db->prepare("INSERT INTO Lista (lista_id, usuario_id) VALUES (?,?)");
+        $st->bindValue(1, $listaId);
+        $st->bindValue(2, $usuarioId);
+        return $st->execute();
+    }
+
+    public function obtenerListasDeUsuario(string $usuarioId): array {
+        $st = $this->db->prepare("SELECT lista_id FROM Lista WHERE usuario_id=? ORDER BY lista_id DESC");
+        $st->bindValue(1, $usuarioId);
+        $st->execute();
+        return $st->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 }
 ?>

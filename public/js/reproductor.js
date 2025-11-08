@@ -1,4 +1,4 @@
-// Playlist and player logic with cover images from caratulas/
+// Playlist and player logic with cover images from imagenes
 const playBtn = document.getElementById('playBtn');
 const progress = document.getElementById('progress');
 const time = document.querySelector('.progress-row .time');
@@ -10,10 +10,10 @@ let currentIndex = 0; // index in the playlist array
 let seconds = 0;
 
 const playlist = [
-  { title: 'Trench', img: 'caratulas/trench.jpg', duration: 220 },
-  { title: 'Nectar', img: 'caratulas/nectar.jpg', duration: 210 },
-  { title: 'Blurryface', img: 'caratulas/blurryface.jpg', duration: 205 },
-  { title: 'Ballads', img: 'caratulas/ballads.jpg', duration: 230 }
+  { title: 'Trench', img: 'imagenes/trench.jpg', duration: 220 },
+  { title: 'Nectar', img: 'imagenes/nectar.jpg', duration: 210 },
+  { title: 'Blurryface', img: 'imagenes/blurryface.jpg', duration: 205 },
+  { title: 'Ballads', img: 'imagenes/ballads.jpg', duration: 230 }
 ];
 
 function idx(offset){

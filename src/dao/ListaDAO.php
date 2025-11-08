@@ -7,5 +7,8 @@ interface ListaDAO {
     public function obtenerTodasLasListas();
     public function actualizarLista(ListaVO $lista);
     public function eliminarLista($lista_id);
+    
+    public function crearLista(string $listaId, string $usuarioId): bool;
+    public function obtenerListasDeUsuario(string $usuarioId): array; // [ ['lista_id' => ...], ...]
 }
 ?>
