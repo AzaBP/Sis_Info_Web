@@ -63,3 +63,4 @@ class AuthController {
         return ['ok'=>true];
     }
 }
+?>

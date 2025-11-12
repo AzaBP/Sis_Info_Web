@@ -44,3 +44,4 @@ class PlaylistController {
         return $this->playlist->obtenerCanciones($listaId);
     }
 }
+?>

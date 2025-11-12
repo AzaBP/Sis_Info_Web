@@ -40,3 +40,4 @@ class Session {
         self::start(); return hash_equals($_SESSION['csrf'] ?? '', $t);
     }
 }
+?>

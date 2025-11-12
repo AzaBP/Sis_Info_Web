@@ -21,3 +21,4 @@ class UserController {
         return ['ok'=>$ok];
     }
 }
+?>

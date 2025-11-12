@@ -17,3 +17,4 @@ class Validation {
     }
     public static function clean(string $s): string { return trim($s); }
 }
+?>
