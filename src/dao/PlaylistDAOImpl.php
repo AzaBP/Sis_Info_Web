@@ -3,11 +3,9 @@ require_once __DIR__ . '/../../config/Database.php';
 require_once 'PlaylistDAO.php';
 
 class PlaylistDAOImpl implements PlaylistDAO {
-    private $conn;
     private PDO $db;
 
-    public function __construct($conn) {
-        $this->conn = $conn;
+    public function __construct() {
         $this->db = Database::getConnection();
     }
 
@@ -16,7 +14,7 @@ class PlaylistDAOImpl implements PlaylistDAO {
         $sql = "INSERT INTO Playlist (lista_id, nombre_cancion, nombre_creador) VALUES (?, ?, ?)";
         
         try {
-            $stmt = $this->conn->prepare($sql);
+            $stmt = $this->db->prepare($sql);
             $stmt->bindValue(1, $playlist->getListaId());
             $stmt->bindValue(2, $playlist->getNombreCancion());
             $stmt->bindValue(3, $playlist->getNombreCreador());
@@ -33,7 +31,7 @@ class PlaylistDAOImpl implements PlaylistDAO {
         $sql = "SELECT * FROM Playlist WHERE lista_id = ? AND nombre_cancion = ? AND nombre_creador = ?";
         
         try {
-            $stmt = $this->conn->prepare($sql);
+            $stmt = $this->db->prepare($sql);
             $stmt->bindValue(1, $lista_id);
             $stmt->bindValue(2, $nombre_cancion);
             $stmt->bindValue(3, $nombre_creador);
@@ -59,7 +57,7 @@ class PlaylistDAOImpl implements PlaylistDAO {
         $playlists = [];
         
         try {
-            $stmt = $this->conn->prepare($sql);
+            $stmt = $this->db->prepare($sql);
             $stmt->execute();
             
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -82,7 +80,7 @@ class PlaylistDAOImpl implements PlaylistDAO {
         $playlists = [];
         
         try {
-            $stmt = $this->conn->prepare($sql);
+            $stmt = $this->db->prepare($sql);
             $stmt->bindValue(1, $lista_id);
             $stmt->execute();
             
@@ -108,7 +106,7 @@ class PlaylistDAOImpl implements PlaylistDAO {
         $canciones = [];
         
         try {
-            $stmt = $this->conn->prepare($sql);
+            $stmt = $this->db->prepare($sql);
             $stmt->bindValue(1, $lista_id);
             $stmt->execute();
             
@@ -132,7 +130,7 @@ class PlaylistDAOImpl implements PlaylistDAO {
         $sql = "DELETE FROM Playlist WHERE lista_id = ? AND nombre_cancion = ? AND nombre_creador = ?";
         
         try {
-            $stmt = $this->conn->prepare($sql);
+            $stmt = $this->db->prepare($sql);
             $stmt->bindValue(1, $lista_id);
             $stmt->bindValue(2, $nombre_cancion);
             $stmt->bindValue(3, $nombre_creador);

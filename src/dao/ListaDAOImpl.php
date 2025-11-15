@@ -3,11 +3,10 @@ require_once __DIR__ . '/../../config/Database.php';
 require_once 'ListaDAO.php';
 
 class ListaDAOImpl implements ListaDAO {
-    private $conn;
     private PDO $db;
 
-    public function __construct($conn) {
-        $this->conn = $conn;
+    public function __construct($db) {
+        $this->db = $db;
         $this->db = Database::getConnection();
     }
 
@@ -16,7 +15,7 @@ class ListaDAOImpl implements ListaDAO {
         $sql = "INSERT INTO Lista (lista_id) VALUES (?)";
         
         try {
-            $stmt = $this->conn->prepare($sql);
+            $stmt = $this->db->prepare($sql);
             $stmt->bindValue(1, $lista->getListaId());
             
             return $stmt->execute();
@@ -31,7 +30,7 @@ class ListaDAOImpl implements ListaDAO {
         $sql = "SELECT * FROM Lista WHERE lista_id = ?";
         
         try {
-            $stmt = $this->conn->prepare($sql);
+            $stmt = $this->db->prepare($sql);
             $stmt->bindValue(1, $lista_id);
             $stmt->execute();
             
@@ -51,7 +50,7 @@ class ListaDAOImpl implements ListaDAO {
         $listas = [];
         
         try {
-            $stmt = $this->conn->prepare($sql);
+            $stmt = $this->db->prepare($sql);
             $stmt->execute();
             
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -71,7 +70,7 @@ class ListaDAOImpl implements ListaDAO {
         $sql = "UPDATE Lista SET lista_id = ? WHERE lista_id = ?";
         
         try {
-            $stmt = $this->conn->prepare($sql);
+            $stmt = $this->db->prepare($sql);
             $stmt->bindValue(1, $lista->getListaId());
             $stmt->bindValue(2, $lista->getListaId());
             
@@ -87,7 +86,7 @@ class ListaDAOImpl implements ListaDAO {
         $sql = "DELETE FROM Lista WHERE lista_id = ?";
         
         try {
-            $stmt = $this->conn->prepare($sql);
+            $stmt = $this->db->prepare($sql);
             $stmt->bindValue(1, $lista_id);
             
             return $stmt->execute();

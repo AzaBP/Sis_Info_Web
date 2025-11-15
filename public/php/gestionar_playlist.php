@@ -45,7 +45,7 @@ $canciones = $listaSel ? $ctl->cancionesDeLista($listaSel) : [];
   <h1>Mis Playlists</h1>
 
   <h2>Crear nueva lista</h2>
-  ?action=create
+  <form method="post" action="?action=create"> 
     <input type="hidden" name="csrf" value="<?= htmlspecialchars($csrf) ?>">
     <label>Identificador/Nombre lista <input name="lista_id" required></label>
     <button>Crear</button>
@@ -55,7 +55,7 @@ $canciones = $listaSel ? $ctl->cancionesDeLista($listaSel) : [];
   <ul>
     <?php foreach ($listas as $l): ?>
       <li>
-        <a href="?lista=<?= urlencode($l[specialchars($l['lista_id']) ?></a>
+        <a href="?lista=<?= urlencode(htmlspecialchars($l['lista_id'])) ?>">
       </li>
     <?php endforeach; ?>
   </ul>
@@ -63,7 +63,7 @@ $canciones = $listaSel ? $ctl->cancionesDeLista($listaSel) : [];
   <?php if ($listaSel): ?>
     <h2>Lista: <?= htmlspecialchars($listaSel) ?></h2>
     <h3>Añadir canción</h3>
-    ?action=add
+    <form method="post" action="?action=add"> 
       <input type="hidden" name="csrf" value="<?= htmlspecialchars($csrf) ?>">
       <input type="hidden" name="lista_id" value="<?= htmlspecialchars($listaSel) ?>">
       <label>Canción <input name="nombre_cancion" required></label>
@@ -76,7 +76,7 @@ $canciones = $listaSel ? $ctl->cancionesDeLista($listaSel) : [];
       <?php foreach ($canciones as $c): ?>
         <li>
           <?= htmlspecialchars($c['nombre_cancion']) ?> — <?= htmlspecialchars($c['nombre_creador']) ?>
-          ?action=del
+          <form method="post" action="?action=del" style="display:inline;">
             <input type="hidden" name="csrf" value="<?= htmlspecialchars($csrf) ?>">
             <input type="hidden" name="lista_id" value="<?= htmlspecialchars($listaSel) ?>">
             <input type="hidden" name="nombre_cancion" value="<?= htmlspecialchars($c['nombre_cancion']) ?>">
@@ -88,4 +88,5 @@ $canciones = $listaSel ? $ctl->cancionesDeLista($listaSel) : [];
     </ul>
   <?php endif; ?>
 
-  <p><a href="perfilr al perfil</a></p>
+<p><a href="perfil.php">Volver al perfil</a></p>
+</body></html>

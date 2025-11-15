@@ -3,11 +3,9 @@ require_once __DIR__ . '/../../config/Database.php';
 require_once 'UsuarioDAO.php';
 
 class UsuarioDAOImpl implements UsuarioDAO {
-    private $conn;
     private PDO $db;
 
-    public function __construct($conn) {
-        $this->conn = $conn;
+    public function __construct() {
         $this->db = Database::getConnection();
     }
 
@@ -16,7 +14,7 @@ class UsuarioDAOImpl implements UsuarioDAO {
         $sql = "INSERT INTO Usuario (usuario_id, nombre, correo, password, telefono, codigo_suscripcion) VALUES (?, ?, ?, ?, ?, ?)";
         
         try {
-            $stmt = $this->conn->prepare($sql);
+            $stmt = $this->db->prepare($sql);
             $stmt->bindValue(1, $usuario->getUsuarioId());
             $stmt->bindValue(2, $usuario->getNombre());
             $stmt->bindValue(3, $usuario->getCorreo());
@@ -36,7 +34,7 @@ class UsuarioDAOImpl implements UsuarioDAO {
         $sql = "SELECT * FROM Usuario WHERE usuario_id = ?";
         
         try {
-            $stmt = $this->conn->prepare($sql);
+            $stmt = $this->db->prepare($sql);
             $stmt->bindValue(1, $usuario_id);
             $stmt->execute();
             
@@ -64,7 +62,7 @@ class UsuarioDAOImpl implements UsuarioDAO {
         $usuarios = [];
         
         try {
-            $stmt = $this->conn->prepare($sql);
+            $stmt = $this->db->prepare($sql);
             $stmt->execute();
             
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -89,7 +87,7 @@ class UsuarioDAOImpl implements UsuarioDAO {
         $sql = "UPDATE Usuario SET nombre = ?, correo = ?, password = ?, telefono = ?, codigo_suscripcion = ? WHERE usuario_id = ?";
         
         try {
-            $stmt = $this->conn->prepare($sql);
+            $stmt = $this->db->prepare($sql);
             $stmt->bindValue(1, $usuario->getNombre());
             $stmt->bindValue(2, $usuario->getCorreo());
             $stmt->bindValue(3, $usuario->getPassword());
@@ -109,7 +107,7 @@ class UsuarioDAOImpl implements UsuarioDAO {
         $sql = "DELETE FROM Usuario WHERE usuario_id = ?";
         
         try {
-            $stmt = $this->conn->prepare($sql);
+            $stmt = $this->db->prepare($sql);
             $stmt->bindValue(1, $usuario_id);
             return $stmt->execute();
 
@@ -123,7 +121,7 @@ class UsuarioDAOImpl implements UsuarioDAO {
         $sql = "SELECT * FROM Usuario WHERE correo = ?";
         
         try {
-            $stmt = $this->conn->prepare($sql);
+            $stmt = $this->db->prepare($sql);
             $stmt->bindValue(1, $correo);
             $stmt->execute();
             
@@ -149,7 +147,7 @@ class UsuarioDAOImpl implements UsuarioDAO {
     public function crearUsuario(string $usuarioId, string $nombre, string $hash, string $correo, int $telefono, string $codigoSuscripcion): bool {
         $sql = "INSERT INTO Usuario (usuario_id, nombre, password, correo, telefono, codigo_suscripcion)
                 VALUES (?,?,?,?,?,?)";
-        $st = $this->db->prepare($sql);
+        $stmt = $this->db->prepare($sql);
         $st->bindValue(1, $usuarioId);
         $st->bindValue(2, $nombre);
         $st->bindValue(3, $hash);
