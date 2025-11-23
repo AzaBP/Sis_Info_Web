@@ -3,10 +3,10 @@ require_once __DIR__ . '/../../config/Database.php';
 require_once 'PlaylistDAO.php';
 
 class PlaylistDAOImpl implements PlaylistDAO {
-    private PDO $db;
+    private $conn;
 
-    public function __construct() {
-        $this->db = Database::getConnection();
+    public function __construct($conn) {
+        $this->conn = $conn;
     }
 
 
@@ -14,7 +14,7 @@ class PlaylistDAOImpl implements PlaylistDAO {
         $sql = "INSERT INTO Playlist (lista_id, nombre_cancion, nombre_creador) VALUES (?, ?, ?)";
         
         try {
-            $stmt = $this->db->prepare($sql);
+            $stmt = $this->conn->prepare($sql);
             $stmt->bindValue(1, $playlist->getListaId());
             $stmt->bindValue(2, $playlist->getNombreCancion());
             $stmt->bindValue(3, $playlist->getNombreCreador());
@@ -31,7 +31,7 @@ class PlaylistDAOImpl implements PlaylistDAO {
         $sql = "SELECT * FROM Playlist WHERE lista_id = ? AND nombre_cancion = ? AND nombre_creador = ?";
         
         try {
-            $stmt = $this->db->prepare($sql);
+            $stmt = $this->conn->prepare($sql);
             $stmt->bindValue(1, $lista_id);
             $stmt->bindValue(2, $nombre_cancion);
             $stmt->bindValue(3, $nombre_creador);
@@ -57,7 +57,7 @@ class PlaylistDAOImpl implements PlaylistDAO {
         $playlists = [];
         
         try {
-            $stmt = $this->db->prepare($sql);
+            $stmt = $this->conn->prepare($sql);
             $stmt->execute();
             
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -80,7 +80,7 @@ class PlaylistDAOImpl implements PlaylistDAO {
         $playlists = [];
         
         try {
-            $stmt = $this->db->prepare($sql);
+            $stmt = $this->conn->prepare($sql);
             $stmt->bindValue(1, $lista_id);
             $stmt->execute();
             
@@ -106,7 +106,7 @@ class PlaylistDAOImpl implements PlaylistDAO {
         $canciones = [];
         
         try {
-            $stmt = $this->db->prepare($sql);
+            $stmt = $this->conn->prepare($sql);
             $stmt->bindValue(1, $lista_id);
             $stmt->execute();
             
@@ -130,7 +130,7 @@ class PlaylistDAOImpl implements PlaylistDAO {
         $sql = "DELETE FROM Playlist WHERE lista_id = ? AND nombre_cancion = ? AND nombre_creador = ?";
         
         try {
-            $stmt = $this->db->prepare($sql);
+            $stmt = $this->conn->prepare($sql);
             $stmt->bindValue(1, $lista_id);
             $stmt->bindValue(2, $nombre_cancion);
             $stmt->bindValue(3, $nombre_creador);
@@ -145,7 +145,7 @@ class PlaylistDAOImpl implements PlaylistDAO {
     
     public function agregarCancion(string $listaId, string $nombreCancion, string $nombreCreador): bool {
         $sql = "INSERT INTO Playlist (lista_id, nombre_cancion, nombre_creador) VALUES (?,?,?)";
-        $st = $this->db->prepare($sql);
+        $st = $this->conn->prepare($sql);
         $st->bindValue(1, $listaId);
         $st->bindValue(2, $nombreCancion);
         $st->bindValue(3, $nombreCreador);
@@ -153,7 +153,7 @@ class PlaylistDAOImpl implements PlaylistDAO {
     }
 
     public function eliminarCancion(string $listaId, string $nombreCancion, string $nombreCreador): bool {
-        $st = $this->db->prepare("DELETE FROM Playlist WHERE lista_id=? AND nombre_cancion=? AND nombre_creador=?");
+        $st = $this->conn->prepare("DELETE FROM Playlist WHERE lista_id=? AND nombre_cancion=? AND nombre_creador=?");
         $st->bindValue(1, $listaId);
         $st->bindValue(2, $nombreCancion);
         $st->bindValue(3, $nombreCreador);
@@ -161,7 +161,7 @@ class PlaylistDAOImpl implements PlaylistDAO {
     }
 
     public function obtenerCanciones(string $listaId): array {
-        $st = $this->db->prepare("SELECT nombre_cancion, nombre_creador FROM Playlist WHERE lista_id=? ORDER BY nombre_cancion");
+        $st = $this->conn->prepare("SELECT nombre_cancion, nombre_creador FROM Playlist WHERE lista_id=? ORDER BY nombre_cancion");
         $st->bindValue(1, $listaId);
         $st->execute();
         return $st->fetchAll(PDO::FETCH_ASSOC);

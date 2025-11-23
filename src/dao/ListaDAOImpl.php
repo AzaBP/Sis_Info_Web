@@ -3,11 +3,10 @@ require_once __DIR__ . '/../../config/Database.php';
 require_once 'ListaDAO.php';
 
 class ListaDAOImpl implements ListaDAO {
-    private PDO $db;
+    private $conn;
 
-    public function __construct($db) {
-        $this->db = $db;
-        $this->db = Database::getConnection();
+    public function __construct($conn) {
+        $this->conn = $conn;
     }
 
 
@@ -15,7 +14,7 @@ class ListaDAOImpl implements ListaDAO {
         $sql = "INSERT INTO Lista (lista_id) VALUES (?)";
         
         try {
-            $stmt = $this->db->prepare($sql);
+            $stmt = $this->conn->prepare($sql);
             $stmt->bindValue(1, $lista->getListaId());
             
             return $stmt->execute();
@@ -30,7 +29,7 @@ class ListaDAOImpl implements ListaDAO {
         $sql = "SELECT * FROM Lista WHERE lista_id = ?";
         
         try {
-            $stmt = $this->db->prepare($sql);
+            $stmt = $this->conn->prepare($sql);
             $stmt->bindValue(1, $lista_id);
             $stmt->execute();
             
@@ -50,7 +49,7 @@ class ListaDAOImpl implements ListaDAO {
         $listas = [];
         
         try {
-            $stmt = $this->db->prepare($sql);
+            $stmt = $this->conn->prepare($sql);
             $stmt->execute();
             
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -70,7 +69,7 @@ class ListaDAOImpl implements ListaDAO {
         $sql = "UPDATE Lista SET lista_id = ? WHERE lista_id = ?";
         
         try {
-            $stmt = $this->db->prepare($sql);
+            $stmt = $this->conn->prepare($sql);
             $stmt->bindValue(1, $lista->getListaId());
             $stmt->bindValue(2, $lista->getListaId());
             
@@ -86,7 +85,7 @@ class ListaDAOImpl implements ListaDAO {
         $sql = "DELETE FROM Lista WHERE lista_id = ?";
         
         try {
-            $stmt = $this->db->prepare($sql);
+            $stmt = $this->conn->prepare($sql);
             $stmt->bindValue(1, $lista_id);
             
             return $stmt->execute();
@@ -98,14 +97,14 @@ class ListaDAOImpl implements ListaDAO {
 
     
     public function crearLista(string $listaId, string $usuarioId): bool {
-        $st = $this->db->prepare("INSERT INTO Lista (lista_id, usuario_id) VALUES (?,?)");
+        $st = $this->conn->prepare("INSERT INTO Lista (lista_id, usuario_id) VALUES (?,?)");
         $st->bindValue(1, $listaId);
         $st->bindValue(2, $usuarioId);
         return $st->execute();
     }
 
     public function obtenerListasDeUsuario(string $usuarioId): array {
-        $st = $this->db->prepare("SELECT lista_id FROM Lista WHERE usuario_id=? ORDER BY lista_id DESC");
+        $st = $this->conn->prepare("SELECT lista_id FROM Lista WHERE usuario_id=? ORDER BY lista_id DESC");
         $st->bindValue(1, $usuarioId);
         $st->execute();
         return $st->fetchAll(PDO::FETCH_ASSOC);

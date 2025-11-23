@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+require_once __DIR__ . '/../../config/Database.php';
 require_once __DIR__ . '/../dao/ListaDAO.php';
 require_once __DIR__ . '/../dao/ListaDAOImpl.php';
 require_once __DIR__ . '/../dao/PlaylistDAO.php';
@@ -9,9 +10,13 @@ require_once __DIR__ . '/../lib/Validation.php';
 class PlaylistController {
     private ListaDAO $listas;
     private PlaylistDAO $playlist;
+
     public function __construct() { 
-        $this->listas = new ListaDAOImpl();
-        $this->playlist = new PlaylistDAOImpl();
+        $database = new Database();
+        $dbConnection = $database->getConnection();
+
+        $this->listas = new ListaDAOImpl($dbConnection);
+        $this->playlist = new PlaylistDAOImpl($dbConnection);
     }
 
     public function crearLista(string $usuarioId, string $listaId): array {
