@@ -1,7 +1,6 @@
 <?php
 declare(strict_types=1);
-require_once __DIR__ . '/../src/lib/Session.php';
-require_once __DIR__ . '/../src/controllers/AuthController.php';
+require_once __DIR__ . '/../../src/lib/Session.php';require_once __DIR__ . '/../../src/controllers/AuthController.php';
 
 Session::start();
 

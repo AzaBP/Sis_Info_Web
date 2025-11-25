@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
-require_once __DIR__ . '/../src/lib/Session.php';
-require_once __DIR__ . '/../src/controllers/UserController.php';
+require_once __DIR__ . '/../../src/lib/Session.php';
+require_once __DIR__ . '/../../src/controllers/UserController.php';
 
 // 1. Verificar el método de la petición (Solo POST)
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') { 

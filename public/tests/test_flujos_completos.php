@@ -1,8 +1,7 @@
 <?php
 require_once __DIR__ . '/../src/controllers/AuthController.php';
 require_once __DIR__ . '/../src/controllers/PlaylistController.php';
-require_once __DIR__ . '/../src/lib/Session.php';
-
+require_once __DIR__ . '/../../src/lib/Session.php';
 echo "<h2> Test Flujos Completos</h2>";
 
 $auth = new AuthController();

@@ -4,6 +4,7 @@ class Database {
     private $db_name = "recomendador_musica_bd";  // Ajustar si se cambia el nombre de la BD
     private $username = "root";
     private $password = "";
+    private $port = "3307";
     private $conn;
 
     // Obtener conexion PDO a la BD

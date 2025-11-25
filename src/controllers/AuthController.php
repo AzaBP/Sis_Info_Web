@@ -7,7 +7,12 @@ require_once __DIR__ . '/../lib/Session.php';
 
 class AuthController {
     private UsuarioDAO $users;
-    public function __construct() { $this->users = new UsuarioDAOImpl(); }
+    public function __construct() { 
+        
+        $database = new Database();
+        $connection = $database->getConnection();
+        $this->usuarioDAO = new UsuarioDAOImpl($connection); 
+    }
 
     private function nuevoUsuarioId(): string {
         return bin2hex(random_bytes(12)); // 24 hex chars
