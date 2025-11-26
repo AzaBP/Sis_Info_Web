@@ -45,7 +45,7 @@ $updated = isset($_GET['updated']);
 <head>
     <meta charset="UTF-8">
     <title>Editar Perfil - VMusic</title>
-    <!-- Se asume que se incluyen aquí los archivos CSS necesarios -->
+    
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body class="bg-900">

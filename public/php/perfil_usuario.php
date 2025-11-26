@@ -51,7 +51,7 @@ $updateMessage = $_GET['updated'] ?? null;
 <head>
     <meta charset="UTF-8">
     <title>Perfil de Usuario - VMusic</title>
-    <link rel="stylesheet" href="../css/style.css"> 
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body class="bg-900">
     <div class="main-wrap container">

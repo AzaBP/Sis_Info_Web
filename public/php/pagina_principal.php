@@ -27,12 +27,12 @@ if ($uid) {
     $playlistsUsuario = $playlistController->listasDeUsuario($uid);
 }
 
-// 3. Contenido del catálogo (Datos simulados)
+// 3. Contenido del catálogo (Datos simulados) - RUTAS CORREGIDAS
 $albumsRecomendados = [
-    ['titulo' => 'Acoustic Breeze', 'imagen' => '../imagenes/ballads.jpg'],
-    ['titulo' => 'Evening Sky', 'imagen' => '../imagenes/ACDC.jpg'],
-    ['titulo' => 'Midnight Vibes', 'imagen' => '../imagenes/nectar.jpg'],
-    ['titulo' => 'Smooth Jazz', 'imagen' => '../imagenes/trench.jpg']
+    ['titulo' => 'Acoustic Breeze', 'imagen' => '/imagenes/ballads.jpg'],
+    ['titulo' => 'Evening Sky', 'imagen' => '/imagenes/ACDC.jpg'],
+    ['titulo' => 'Midnight Vibes', 'imagen' => '/imagenes/nectar.jpg'],
+    ['titulo' => 'Smooth Jazz', 'imagen' => '/imagenes/trench.jpg']
 ];
 ?>
 
@@ -41,12 +41,10 @@ $albumsRecomendados = [
 <head>
     <meta charset="UTF-8">
     <title>VMusic - Principal</title>
-    <!-- Incluir CSS de VMusic -->
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body class="bg-900">
     <header class="app-header">
-        <!-- Lógica para mostrar links de Perfil o Login/Registro -->
         <nav class="nav-left">
             <a href="#" class="nav-item active">Home</a>
             <a href="perfil_usuario.php" class="nav-item">Your Library</a>
@@ -54,7 +52,6 @@ $albumsRecomendados = [
         
         <div class="header-actions">
             <input type="search" placeholder="Buscar canciones o artistas..." class="search">
-            <!-- Botón de perfil (con menú desplegable si se usa JavaScript) -->
             <?php if ($uid): ?>
                 <a href="perfil_usuario.php" class="icon small">Perfil</a>
             <?php else: ?>
@@ -66,13 +63,13 @@ $albumsRecomendados = [
     <div class="main-wrap">
         <h1 class="page-title">Bienvenido, <?= $uid ? htmlspecialchars($userEmail) : 'Invitado' ?></h1>
 
-        <!-- Sección 1: Recomendaciones (Contenido Dinámico) -->
+        <!-- Sección 1: Recomendaciones -->
         <section>
             <h2 class="section-title">Recommended Albums</h2>
             <div class="albums-grid">
                 <?php foreach ($albumsRecomendados as $album): ?>
-                    <!-- Cada tarjeta debe enlazar a detalles_cancion.php o a una vista de álbum -->
                     <a href="detalles_cancion.php?cancion=<?= urlencode($album['titulo']) ?>&creador=Artista" class="album-card">
+                        <!-- RUTA ABSOLUTA CORREGIDA -->
                         <img src="<?= htmlspecialchars($album['imagen']) ?>" alt="<?= htmlspecialchars($album['titulo']) ?>" class="album-cover">
                         <div class="album-title"><?= htmlspecialchars($album['titulo']) ?></div>
                     </a>
@@ -81,7 +78,7 @@ $albumsRecomendados = [
         </section>
 
         <?php if ($uid): ?>
-        <!-- Sección 2: Your library (Solo para usuarios logueados) -->
+        <!-- Sección 2: Your library -->
         <section>
             <h2 class="section-title">Your Library (Playlists)</h2>
             <div class="playlists-row">
@@ -98,8 +95,6 @@ $albumsRecomendados = [
             </div>
         </section>
         <?php endif; ?>
-        
-        <!-- Aquí se colocaría el mini-reproductor fijo si el diseño lo requiere -->
     </div>
 </body>
 </html>

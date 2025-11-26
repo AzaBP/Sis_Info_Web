@@ -64,7 +64,8 @@ $similares = [
     <meta charset="UTF-8">
     <title>Detalle de <?= htmlspecialchars($cancion['nombre']) ?></title>
     <!-- Inclusión de estilos VMusic -->
-    <link rel="stylesheet" href="../css/style.css"> 
+    
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body class="bg-900">
     <!-- Menú desplegable y navegación -->
