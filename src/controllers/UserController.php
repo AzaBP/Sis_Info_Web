@@ -33,5 +33,39 @@ class UserController {
     public function eliminarUsuario(string $usuarioId): bool {
         return $this->users->eliminarUsuario($usuarioId);
     }
+
+    public function actualizarPerfilCompleto(string $usuarioId, array $datos): array {
+        $nombre = Validation::clean($datos['nombre'] ?? '');
+        $apellidos = Validation::clean($datos['apellidos'] ?? '');
+        $email = Validation::clean($datos['email'] ?? '');
+        $telefono = Validation::clean($datos['telefono'] ?? '');
+        
+        $errors = [];
+        
+        // Validaciones
+        if (!Validation::texto($nombre, 2, 100)) {
+            $errors['nombre'] = 'El nombre debe tener entre 2 y 100 caracteres';
+        }
+        
+        if (!Validation::correo($email)) {
+            $errors['email'] = 'El correo electrónico no es válido';
+        }
+        
+        if (!empty($telefono) && !Validation::tel($telefono)) {
+            $errors['telefono'] = 'El teléfono debe tener entre 7 y 15 dígitos';
+        }
+        
+        if (!empty($apellidos) && !Validation::texto($apellidos, 0, 200)) {
+            $errors['apellidos'] = 'Los apellidos son demasiado largos';
+        }
+        
+        if (!empty($errors)) {
+            return ['ok' => false, 'errors' => $errors];
+        }
+        
+        $ok = $this->users->actualizarPerfil($usuarioId, $nombre, (int)$telefono);
+        
+        return ['ok' => $ok];
+    }
 }
 ?>

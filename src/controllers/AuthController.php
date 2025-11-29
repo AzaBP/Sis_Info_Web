@@ -4,11 +4,13 @@ require_once __DIR__ . '/../dao/UsuarioDAO.php';
 require_once __DIR__ . '/../dao/UsuarioDAOImpl.php';
 require_once __DIR__ . '/../lib/Validation.php';
 require_once __DIR__ . '/../lib/Session.php';
+require_once __DIR__ . '/../../config/Database.php';
 
 class AuthController {
-    private UsuarioDAO $users;
+    private UsuarioDAO $usuarioDAO; 
+    
+
     public function __construct() { 
-        
         $database = new Database();
         $connection = $database->getConnection();
         $this->usuarioDAO = new UsuarioDAOImpl($connection); 
@@ -32,13 +34,14 @@ class AuthController {
 
         if ($errors) return ['ok'=>false,'errors'=>$errors];
 
-        // Duplicado
-        if ($this->users->getPorCorreo($correo)) return ['ok'=>false,'errors'=>['correo'=>'Ya existe un usuario con ese correo']];
+        if ($this->usuarioDAO->getPorCorreo($correo)) {
+            return ['ok'=>false,'errors'=>['correo'=>'Ya existe un usuario con ese correo']];
+        }
 
         $hash = password_hash($password, PASSWORD_DEFAULT);
         $uid  = $this->nuevoUsuarioId();
 
-        $ok = $this->users->crearUsuario($uid, $nombre, $hash, $correo, (int)$tel, $codigo);
+        $ok = $this->usuarioDAO->crearUsuario($uid, $nombre, $hash, $correo, (int)$tel, $codigo);
         if (!$ok) return ['ok'=>false,'errors'=>['global'=>'Error creando usuario']];
 
         Session::login($uid, $correo);
@@ -49,21 +52,21 @@ class AuthController {
         $correo = Validation::clean($correo);
         if (!Validation::correo($correo)) return ['ok'=>false,'errors'=>['correo'=>'Correo no válido']];
 
-        $row = $this->users->getPorCorreo($correo);
+        $row = $this->usuarioDAO->getPorCorreo($correo);
         if (!$row) return ['ok'=>false,'errors'=>['global'=>'Credenciales incorrectas']];
 
         $hash = $row['password'] ?? '';
-        // Soportar transición: si el hash falla, probar comparación directa y rehash
+        
         if (password_verify($password, $hash)) {
-            // opcional: actualizar a hash actual si lo necesita
             if (password_needs_rehash($hash, PASSWORD_DEFAULT)) {
-                // aquí podrías añadir un método DAO para actualizar el hash
+                // Aquí podrías añadir un método DAO para actualizar el hash
             }
         } elseif ($password === $hash) {
             // Contraseñas antiguas en claro -> considerar rehash aquí
         } else {
             return ['ok'=>false,'errors'=>['global'=>'Credenciales incorrectas']];
         }
+        
         Session::login($row['usuario_id'], $row['correo']);
         return ['ok'=>true];
     }

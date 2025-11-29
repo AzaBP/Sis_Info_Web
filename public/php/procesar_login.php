@@ -19,7 +19,7 @@ $ctl = new AuthController();
 $res = $ctl->login($correo, $pass);
 
 if ($res['ok'] ?? false) {
-    header('Location: perfil.php');
+    header('Location: pagina_principal.php');
 } else {
     $q = http_build_query(['e'=>json_encode($res['errors'] ?? ['global'=>'Error'])]);
     header("Location: login.php?$q");

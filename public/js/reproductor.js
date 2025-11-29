@@ -13,7 +13,7 @@ const playlist = [
   { title: 'Trench', img: 'imagenes/trench.jpg', duration: 220 },
   { title: 'Nectar', img: 'imagenes/nectar.jpg', duration: 210 },
   { title: 'Blurryface', img: 'imagenes/blurryface.jpg', duration: 205 },
-  { title: 'Ballads', img: 'imagenes/ballads.jpg', duration: 230 }
+  { title: 'Estopa', img: 'imagenes/Estopa.jpg', duration: 230 }
 ];
 
 function idx(offset){

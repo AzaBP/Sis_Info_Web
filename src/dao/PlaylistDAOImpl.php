@@ -114,8 +114,8 @@ class PlaylistDAOImpl implements PlaylistDAO {
                 $canciones[] = new CancionVO(
                     $row['nombre'],
                     $row['nombre_creador'],
-                    $row['duracion'],
-                    $row['valoracion']
+                    $row['duración'],
+                    $row['valoración']
                 );
             }
             return $canciones;
@@ -161,11 +161,17 @@ class PlaylistDAOImpl implements PlaylistDAO {
     }
 
     public function obtenerCanciones(string $listaId): array {
-        $st = $this->conn->prepare("SELECT nombre_cancion, nombre_creador FROM Playlist WHERE lista_id=? ORDER BY nombre_cancion");
-        $st->bindValue(1, $listaId);
-        $st->execute();
-        return $st->fetchAll(PDO::FETCH_ASSOC);
-    }
+    $sql = "SELECT p.nombre_cancion, p.nombre_creador, c.duracion 
+            FROM Playlist p 
+            LEFT JOIN Cancion c ON p.nombre_cancion = c.nombre AND p.nombre_creador = c.nombre_creador 
+            WHERE p.lista_id = ? 
+            ORDER BY p.nombre_cancion";
+    
+    $st = $this->conn->prepare($sql);
+    $st->bindValue(1, $listaId);
+    $st->execute();
+    return $st->fetchAll(PDO::FETCH_ASSOC);
+}
 
 }
 ?>
