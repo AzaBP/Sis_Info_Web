@@ -15,6 +15,7 @@ $nombreLista = '';
 $canciones = [];
 $esPublica = false;
 $playlistExiste = false;
+$esDelUsuario = false; // Nueva variable para verificar si es del usuario
 
 if (!$listaId) {
     header('Location: pagina_principal.php');
@@ -37,6 +38,7 @@ try {
         foreach ($playlistsUsuario as $playlist) {
             if ($playlist['lista_id'] == $listaId) {
                 $playlistExiste = true;
+                $esDelUsuario = true; // Marcar como playlist del usuario
                 $nombreLista = htmlspecialchars($listaId);
                 break;
             }
@@ -54,6 +56,7 @@ try {
     // DEBUG: Verificar qué se está obteniendo
     error_log("DEBUG playlist.php - Lista: $listaId");
     error_log("DEBUG playlist.php - Es pública: " . ($esPublica ? 'SÍ' : 'NO'));
+    error_log("DEBUG playlist.php - Es del usuario: " . ($esDelUsuario ? 'SÍ' : 'NO'));
     error_log("DEBUG playlist.php - Canciones obtenidas: " . count($canciones));
 
 } catch (Exception $e) {
@@ -190,10 +193,13 @@ try {
             font-weight: bold;
             text-decoration: none;
             display: inline-block;
+            transition: background 0.2s ease;
         }
         
         .btn:hover {
             background: #00b8e0;
+            text-decoration: none;
+            color: #121212;
         }
         
         .add-to-library {
@@ -206,6 +212,34 @@ try {
         
         .add-to-library .btn:hover {
             background: #218838;
+        }
+        
+        .playlist-actions {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-manage {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .btn-manage:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+        
+        .btn-add-songs {
+            background: #28a745;
+            color: white;
+        }
+        
+        .btn-add-songs:hover {
+            background: #218838;
+            color: white;
         }
     </style>
 </head>
@@ -242,12 +276,24 @@ try {
             <h1 class="playlist-title"><?= $nombreLista ?></h1>
             <?php if ($playlistExiste): ?>
                 <div class="playlist-badge">
-                    <?= $esPublica ? 'PÚBLICA' : 'TU PLAYLIST' ?>
+                    <?= $esPublica ? 'PÚBLICA' : ($esDelUsuario ? 'TU PLAYLIST' : 'PRIVADA') ?>
                 </div>
             <?php endif; ?>
             <p style="color: #ccc; margin: 0;"><?= count($canciones) ?> canciones</p>
             
-            <?php if ($esPublica && $uid): ?>
+            <!-- BOTONES DE ACCIÓN PARA PLAYLIST DEL USUARIO -->
+            <?php if ($esDelUsuario): ?>
+                <div class="playlist-actions">
+                    <a href="gestionar_playlist.php?lista=<?= urlencode($listaId) ?>" class="btn btn-manage">
+                        ✏️ Gestionar Playlist
+                    </a>
+                    <a href="gestionar_playlist.php?lista=<?= urlencode($listaId) ?>&add=true" class="btn btn-add-songs">
+                        ＋ Añadir Canciones
+                    </a>
+                </div>
+            <?php endif; ?>
+            
+            <?php if ($esPublica && $uid && !$esDelUsuario): ?>
                 <div class="add-to-library">
                     <button class="btn" onclick="agregarALibreria('<?= $listaId ?>')">
                         ＋ Agregar a mi librería
@@ -260,7 +306,7 @@ try {
             <div class="empty-playlist">
                 <h3>Esta playlist está vacía</h3>
                 <p>¡No hay canciones en esta playlist!</p>
-                <?php if (!$esPublica && $uid): ?>
+                <?php if ($esDelUsuario): ?>
                     <a href="gestionar_playlist.php?lista=<?= urlencode($listaId) ?>" class="btn" style="margin-top: 15px;">
                         Añadir canciones
                     </a>
